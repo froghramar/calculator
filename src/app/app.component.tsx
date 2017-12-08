@@ -1,20 +1,24 @@
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import './app.style.css';
 
-const logo = require('./logo.svg');
+import { BasicCalc } from './../components/basic-calc';
 
 export class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Helmet>
+                    <title> Calculator </title>
+                </Helmet>
+                <MuiThemeProvider>
+                    <div className="calc-container">
+                        <BasicCalc/>
+                    </div>
+                </MuiThemeProvider>
+            </div>
+        );
+    }
 }

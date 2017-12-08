@@ -1,0 +1,1 @@
+export { BasicCalc } from './basic-calc.component';
