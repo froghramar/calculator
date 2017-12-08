@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 import './app.style.css';
 
@@ -15,7 +16,9 @@ export class App extends React.Component {
                 </Helmet>
                 <MuiThemeProvider>
                     <div className="calc-container">
-                        <BasicCalc/>
+                        <Paper zDepth={3}>
+                            <BasicCalc/>
+                        </Paper>
                     </div>
                 </MuiThemeProvider>
             </div>

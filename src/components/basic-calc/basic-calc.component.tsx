@@ -6,6 +6,9 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
+import { BasicCalcOut } from '../basic-calc-out';
+import { BasicCalcKeypad } from '../basic-calc-keypad';
+
 export class BasicCalc extends React.Component {
 
     render() {
@@ -30,6 +33,8 @@ export class BasicCalc extends React.Component {
                             </IconMenu>
                         }
                     />
+                    <BasicCalcOut/>
+                    <BasicCalcKeypad/>
                 </div>
             </div>
         );
