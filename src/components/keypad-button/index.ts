@@ -1,1 +1,1 @@
-export { KeypadButton } from './keypad-button.component';
+export { KeypadButton, KeypadButtonProps } from './keypad-button.component';

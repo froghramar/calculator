@@ -9,7 +9,28 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { BasicCalcOut } from '../basic-calc-out';
 import { BasicCalcKeypad } from '../basic-calc-keypad';
 
-export class BasicCalc extends React.Component {
+interface BasicCalcProps { }
+interface BasicCalcState { }
+
+export class BasicCalc extends React.Component <BasicCalcProps, BasicCalcState> {
+
+    constructor(props: BasicCalcProps) {
+        super(props);
+    }
+
+    BasicCalcOutRef: BasicCalcOut;
+
+    onKeyboardPress = (event: KeyboardEvent) => {
+        this.BasicCalcOutRef.onAdd(event.key);
+    };
+
+    componentWillMount() {
+        addEventListener('keyup', this.onKeyboardPress);
+    }
+
+    componentWillUnmount() {
+        removeEventListener('keyup', this.onKeyboardPress);
+    }
 
     render() {
         return (
@@ -33,7 +54,9 @@ export class BasicCalc extends React.Component {
                             </IconMenu>
                         }
                     />
-                    <BasicCalcOut/>
+                    <BasicCalcOut ref={(instance: BasicCalcOut) => {
+                        this.BasicCalcOutRef = instance;
+                    }}/>
                     <BasicCalcKeypad/>
                 </div>
             </div>
