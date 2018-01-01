@@ -24,6 +24,10 @@ export class BasicCalc extends React.Component <BasicCalcProps, BasicCalcState> 
         this.BasicCalcOutRef.onAdd(event.key);
     };
 
+    onButtonPress = (label: string) => {
+        this.BasicCalcOutRef.onAdd(label);
+    };
+
     componentWillMount() {
         addEventListener('keyup', this.onKeyboardPress);
     }
@@ -57,7 +61,7 @@ export class BasicCalc extends React.Component <BasicCalcProps, BasicCalcState> 
                     <BasicCalcOut ref={(instance: BasicCalcOut) => {
                         this.BasicCalcOutRef = instance;
                     }}/>
-                    <BasicCalcKeypad/>
+                    <BasicCalcKeypad onButtonPress={ this.onButtonPress }/>
                 </div>
             </div>
         );

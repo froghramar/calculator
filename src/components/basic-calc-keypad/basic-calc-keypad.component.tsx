@@ -3,8 +3,11 @@ import * as React from 'react';
 import './basic-calc-keypad.style.css';
 
 import { KeypadButton, KeypadButtonProps  } from '../keypad-button';
+import {isNullOrUndefined} from 'util';
 
-interface BasicCalcKeypadProps { }
+interface BasicCalcKeypadProps {
+    onButtonPress?: Function
+}
 interface BasicCalcKeypadState { }
 
 export class BasicCalcKeypad extends React.Component <BasicCalcKeypadProps, BasicCalcKeypadState> {
@@ -14,7 +17,8 @@ export class BasicCalcKeypad extends React.Component <BasicCalcKeypadProps, Basi
     }
 
     onClick = (label: string) => {
-        alert(label);
+        if(!isNullOrUndefined(this.props.onButtonPress))
+            this.props.onButtonPress(label);
     };
 
     render() {

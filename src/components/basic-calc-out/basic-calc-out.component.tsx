@@ -16,14 +16,36 @@ export class BasicCalcOut extends React.Component <BasicCalcOutProps, BasicCalcO
 
     componentWillMount() {
         this.setState({
-            currentExpression: '29.36',
-            pastExpression: '12.34+17.02='
+            currentExpression: '0',
+            pastExpression: ''
         });
     }
 
     onAdd = (toAdd: string) => {
+
+        const allowedLabels: String[] = ['+', '-', '*', '/', '.', '=', 'Backspace'];
+
+        if(allowedLabels.indexOf(toAdd) == -1 && !toAdd.match('[0-9]')) return;
+
+        let currentExpression = this.state.currentExpression;
+        let pastExpression = this.state.pastExpression;
+
+        switch (toAdd) {
+            case 'Backspace':
+                currentExpression = currentExpression.slice(0, -1);
+                if(currentExpression.length == 0) currentExpression = '0';
+                break;
+            case '=':
+                currentExpression = eval(this.state.currentExpression).toString();
+                pastExpression = this.state.currentExpression.concat(toAdd);
+                break;
+            default:
+                if(currentExpression == '0') currentExpression = toAdd;
+                else currentExpression = currentExpression.concat(toAdd);
+        }
         this.setState({
-            currentExpression: this.state.currentExpression.concat(toAdd)
+            currentExpression: currentExpression,
+            pastExpression: pastExpression
         });
     };
 
